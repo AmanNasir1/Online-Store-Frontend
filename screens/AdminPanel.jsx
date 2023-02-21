@@ -5,8 +5,6 @@ import {
   Image,
   StyleSheet,
   ScrollView,
-  FlatList,
-  TouchableOpacity,
 } from 'react-native';
 import axios from 'axios';
 import icon from '../constant/icon';

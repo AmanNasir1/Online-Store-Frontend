@@ -7,7 +7,7 @@ import {
   View,
   ToastAndroid,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState,useContext} from 'react';
 import axios from 'axios';
 import constant from '../constant/constant';
 
@@ -26,12 +26,13 @@ const Login = ({navigation}) => {
       if (res.data.isAdmin) {
         navigation.navigate('AdminPanel');
       } else {
-        navigation.navigate('UserPanel');
+        navigation.navigate('UserTab');
       }
     } else {
       ToastAndroid.show(res.data.error, ToastAndroid.SHORT);
     }
   };
+
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior="padding">

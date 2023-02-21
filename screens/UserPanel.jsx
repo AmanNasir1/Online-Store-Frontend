@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   Text,
   View,
@@ -14,6 +14,8 @@ import {color} from 'react-native-reanimated';
 import Banner from '../assets/images/Grocery.png';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import icon from '../constant/icon';
+import {CartContext} from './CartContext';
+
 const UserPanel = () => {
   const [category, SetCategory] = useState([]);
   const [products, SetProducts] = useState([]);
@@ -51,6 +53,9 @@ const UserPanel = () => {
       </View>
     );
   };
+  const Globalstate = useContext(CartContext);
+  const dispatch = Globalstate.dispatch;
+  console.log(Globalstate);
 
   return (
     <>
@@ -66,7 +71,7 @@ const UserPanel = () => {
             style={{
               width: 25,
               height: 25,
-              tintColor:"#61B846"
+              tintColor: '#61B846',
             }}
           />
         </View>
@@ -111,7 +116,9 @@ const UserPanel = () => {
                   <Text style={styles.price}>
                     {val.price}-per {val.unit}
                   </Text>
-                  <TouchableOpacity style={styles.Add}>
+                  <TouchableOpacity
+                    style={styles.Add}
+                    onPress={() => dispatch({type: 'Add', payload: val})}>
                     <Text style={styles.AddText}>+</Text>
                   </TouchableOpacity>
                 </View>
